@@ -23,6 +23,7 @@ async def whatday(ctx):
 # @aiocron.crontab('* * * * *')
 async def cornjob1():
     CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
     print('success')
 
@@ -31,6 +32,7 @@ async def cornjob1():
 @aiocron.crontab('30 16 * * FRI')
 async def cronjob2():
     CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
     await channel.send('https://twitter.com/CraigWeekend/status/1393340094602366976?s=20')
 
