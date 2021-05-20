@@ -15,9 +15,9 @@ client = commands.Bot(command_prefix = '.')#answers with the ms latency
 async def whatday(ctx):
     today = datetime.datetime.today().weekday()
     if today == 2:
-        await ctx.send(f'https://www.youtube.com/watch?v=A5U8ypHq3BU')
+        await ctx.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
     else:
-        await ctx.send(f'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        await ctx.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
 @aiocron.crontab('0 4 * * THU')
 async def cornjob1():
