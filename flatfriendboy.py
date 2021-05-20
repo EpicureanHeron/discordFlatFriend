@@ -19,7 +19,8 @@ async def whatday(ctx):
     else:
         await ctx.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
-@aiocron.crontab('0 4 * * THU')
+# @aiocron.crontab('0 4 * * THU')
+@aiocron.crontab('* * * * *')
 async def cornjob1():
     CHANNEL_ID = open("channel.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
