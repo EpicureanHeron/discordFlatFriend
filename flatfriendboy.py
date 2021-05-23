@@ -10,7 +10,7 @@ import aiocron
 CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
-client = commands.Bot(command_prefix = '.')#answers with the ms latency
+client = commands.Bot(command_prefix = '.')
 @client.command()
 async def whatday(ctx):
     today = datetime.datetime.today().weekday()
@@ -19,9 +19,15 @@ async def whatday(ctx):
     else:
         await ctx.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
+@client.command()
+async def cornjob(ctx):
+    
+    await ctx.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
+   
+
 @aiocron.crontab('0 4 * * FRI')
 # @aiocron.crontab('* * * * *')
-async def cornjob1():
+async def cronjob1():
     CHANNEL_ID = open("channel.txt","r").readline()
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
@@ -36,5 +42,12 @@ async def cronjob2():
     channel = client.get_channel(int(CHANNEL_ID))
     await channel.send('https://twitter.com/CraigWeekend/status/1393340094602366976?s=20')
 
+@aiocron.crontab('00 8 * * MON')
+async def cronjob3():
+    CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
+    channel = client.get_channel(int(CHANNEL_ID))
+
+    await channel.send('https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039')
 
 client.run(TOKEN)
