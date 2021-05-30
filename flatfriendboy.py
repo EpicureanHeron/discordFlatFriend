@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import datetime
 import aiocron
+import random
 
 # will not play unless it is friday
 # instead rickrolls
@@ -47,6 +48,19 @@ async def cronjob3():
     CHANNEL_ID = open("channel.txt","r").readline()
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
+
+    await channel.send('https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039')
+
+
+@aiocron.crontab('20 16 * * *')
+async def cronjob4():
+    CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
+    channel = client.get_channel(int(CHANNEL_ID))
+    value = random.randrange(1, 100)
+    if value%4 == 0:
+        print('yup')
+        # https://stackoverflow.com/questions/54992629/how-to-save-display-giphy-gif-using-python-api
 
     await channel.send('https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039')
 
