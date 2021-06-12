@@ -3,6 +3,7 @@ from discord.ext import commands
 import datetime
 import aiocron
 import random
+import re
 
 # will not play unless it is friday
 # instead rickrolls
@@ -12,18 +13,29 @@ CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
-@client.command()
-async def whatday(ctx):
-    today = datetime.datetime.today().weekday()
-    if today ==4:
-        await ctx.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
-    else:
-        await ctx.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
-@client.command()
-async def cornjob(ctx):
+@client.event
+async def on_message(message):
+    whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
+
+    match = whatdays.search(message.content)
+        # message.channel.send
+    # if message.author.bot == False:
+    #     print('https://www.youtube.com/watch?v=ISiGiYfahS0')
+    if match:
+        today = datetime.datetime.today().weekday()
+        if today ==4:
+            await message.channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
+        else:
+            await message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+
+    if message.content.startswith('.cornjob'):
+        await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
+
+# @client.command()   
+# async def cornjob(ctx):
     
-    await ctx.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
+#     await ctx.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
    
 
 @aiocron.crontab('0 4 * * FRI')
