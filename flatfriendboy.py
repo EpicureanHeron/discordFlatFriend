@@ -26,8 +26,11 @@ async def on_message(message):
         today = datetime.datetime.today().weekday()
         if today ==4:
             await message.channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
-        else:
+        elif today in [0,1,2,3]:
             await message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        elif today in [5,6]:
+            await message.channel.send('https://twitter.com/CraigWeekend/status/1393340094602366976?s=20')
+
 
     if message.content.startswith('.cornjob'):
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
@@ -70,10 +73,10 @@ async def cronjob4():
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
     value = random.randrange(1, 100)
+    print(value)
     if value%4 == 0:
-        print('yup')
-        # https://stackoverflow.com/questions/54992629/how-to-save-display-giphy-gif-using-python-api
-
-    await channel.send('https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039')
+        print('posting!')
+      
+        await channel.send('https://tenor.com/view/drugs-dope-high-trippy-gif-4808633')
 
 client.run(TOKEN)
