@@ -25,7 +25,10 @@ async def on_message(message):
     if match:
         today = datetime.datetime.today().weekday()
         if today ==4:
-            await message.channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
+            # flat friend protest over, uncomment below
+            # await message.channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
+            # flat friend protest not over, uncomment below
+            await message.channel.send('https://twitter.com/gatorsafterdark/status/1423646602691072000?s=20')
         elif today in [0,1,2,3]:
             await message.channel.send('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
         elif today in [5,6]:
@@ -48,9 +51,9 @@ async def cronjob1():
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
     print('success')
-
-    await channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
-
+    # after protest
+    # await channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
+    await channel.send('https://twitter.com/gatorsafterdark/status/1423646602691072000?s=20')
 @aiocron.crontab('30 16 * * FRI')
 async def cronjob2():
     CHANNEL_ID = open("channel.txt","r").readline()
