@@ -38,6 +38,15 @@ async def on_message(message):
     if message.content.startswith('.cornjob'):
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
 
+
+    if message.content.startswith('good bot'):
+        # print(message.author)
+        value = random.randrange(1, 100)
+        print("the value for good bot is: " + str(value))
+        if value%2==0:
+            await message.author.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
+        else:
+            await message.channel.send(f"I've seen your google history, {message.author.mention}, you better call me a good bot" )
 # @client.command()   
 # async def cornjob(ctx):
     
