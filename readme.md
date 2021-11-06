@@ -7,3 +7,21 @@ Following this guide
 [Real Python](https://realpython.com/how-to-make-a-discord-bot-python/)
 
 [Raspberry Pi](https://raspberrytips.com/make-a-discord-bot-on-pi/)
+
+Running remotely on a Raspberry Pi:
+
+```
+screen
+```
+https://help.ubuntu.com/community/Screen
+
+Then in the virtual terminal run the commands to kick off the bot 
+```
+python3 flatfriendboy.py
+```
+
+then detach the virtual terminal using
+
+ctrl + a + d
+
+Everything should still be running.
