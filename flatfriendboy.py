@@ -39,7 +39,7 @@ async def on_message(message):
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
 
 
-    if message.content.startswith('fgood bot') or message.content.startswith('fGood bot'):
+    if message.content.startswith('good bot') or message.content.startswith('Good bot'):
         # print(message.author)
         value = random.randrange(1, 100)
         print("the value for good bot is: " + str(value))
