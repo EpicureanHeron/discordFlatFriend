@@ -17,7 +17,7 @@ client = commands.Bot(command_prefix = '.')
 @client.event
 async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
-
+   
     match = whatdays.search(message.content)
         # message.channel.send
     # if message.author.bot == False:
@@ -34,24 +34,23 @@ async def on_message(message):
         elif today in [5,6]:
             await message.channel.send('https://twitter.com/CraigWeekend/status/1393340094602366976?s=20')
 
-
+    match = whatdays.search(message.content)
     if message.content.startswith('.cornjob'):
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
 
 
-    if message.content.startswith('good bot'):
+    if message.content.startswith('fgood bot') or message.content.startswith('fGood bot'):
         # print(message.author)
         value = random.randrange(1, 100)
         print("the value for good bot is: " + str(value))
+        authorObj = message.author
+       
         if value%2==0:
-            await message.author.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
+            await authorObj.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
+        elif value == 69:
+            await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
         else:
-            await message.channel.send(f"I've seen your google history, {message.author.mention}, you better call me a good bot" )
-# @client.command()   
-# async def cornjob(ctx):
-    
-#     await ctx.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
-   
+            await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
 
 @aiocron.crontab('0 4 * * FRI')
 # @aiocron.crontab('* * * * *')
