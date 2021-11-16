@@ -14,6 +14,8 @@ CHANNEL_ID = open("channel.txt","r").readline()
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
 
+
+
 @client.event
 async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
@@ -51,6 +53,20 @@ async def on_message(message):
             await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
+
+    if message.content.startswith('hail satan'):
+         
+        secret_santa_list = message.mentions
+        print(secret_santa_list)
+ 
+        for user in secret_santa_list:
+            await user.send('test')
+    # if message.content.startswith('sudo members'):
+    #     x=  message.guild.members
+    #     print(x)
+    #     print('xxxxxx')
+    #     y = message.server.members
+    #     print(y)
 
 @aiocron.crontab('0 4 * * FRI')
 # @aiocron.crontab('* * * * *')
