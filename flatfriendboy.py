@@ -4,6 +4,7 @@ import datetime
 import aiocron
 import random
 import re
+import secret_santa 
 
 # will not play unless it is friday
 # instead rickrolls
@@ -55,18 +56,31 @@ async def on_message(message):
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
 
     if message.content.startswith('hail satan'):
+        #1 load excel data in /data folder with pandas? 
+        #2 randomly match users (gift_giver, gift_receiver)
+           # A) this may be tricky...be deliberate and may make this a function
+        #3 
          
-        secret_santa_list = message.mentions
-        print(secret_santa_list)
- 
-        for user in secret_santa_list:
-            await user.send('test')
-    # if message.content.startswith('sudo members'):
-    #     x=  message.guild.members
-    #     print(x)
-    #     print('xxxxxx')
-    #     y = message.server.members
-    #     print(y)
+        mention_object_list = message.mentions
+        user_list = []
+
+        for user_obj in mention_object_list :
+            user_list.append(user_obj.name)
+        print(user_list)
+
+        results = secret_santa.secret_santa(user_list)
+        secret_santa.save_results(results)
+
+        # for user_obj in mention_object_list:
+              #  user_obj will be the gift_giver, so, look up from the results list who is associated with with them probably using a name match in the list 
+              # look up info from pandas based on name of gift_receiver
+              # format string (do not use the f string formatting) with relevant information
+              # message the gift_give with the details (this will be important )
+              
+
+
+        #     await user.send('test')
+
 
 @aiocron.crontab('0 4 * * FRI')
 # @aiocron.crontab('* * * * *')
