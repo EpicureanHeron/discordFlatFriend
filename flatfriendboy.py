@@ -72,6 +72,19 @@ async def on_message(message):
         secret_santa.save_results(results)
 
         # for user_obj in mention_object_list:
+        df =secret_santa.load_excel_pandas()
+        for user_obj in mention_object_list:
+            gift_giver = user_obj.name
+            for pair in results:
+                if pair[0] == gift_giver:
+                    gift_receiver = pair[1]
+                    message = secret_santa.create_gift_receiver_message(gift_receiver, df)
+                    print(gift_giver)
+                    print(gift_receiver)
+                    print(message)
+
+                    if gift_giver == 'EpicureanHeron':
+                        await user_obj.send(message)
               #  user_obj will be the gift_giver, so, look up from the results list who is associated with with them probably using a name match in the list 
               # look up info from pandas based on name of gift_receiver
               # format string (do not use the f string formatting) with relevant information

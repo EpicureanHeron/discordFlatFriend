@@ -1,4 +1,5 @@
 import random
+import pandas as pd
 
 def secret_santa(users):
 
@@ -21,9 +22,6 @@ def secret_santa(users):
       
         end_result.append(pair)
         user_copied.remove(gift_reciever)
-       
-        
-        
 
     return end_result
 
@@ -40,7 +38,33 @@ def save_results(list_of_tuples):
 
     file.close()
 
+def load_excel_pandas():
+    df = pd.read_excel("./data/secret_santa.xlsx")
+   
+    return df
+
+def create_gift_receiver_message(gift_reciever, df):
+    data = {'email': '',
+    'discord_nick_name': '',
+    'discord_user_name': '',
+    'address': '',
+    'likes': '',
+    'dislikes': ''}
+    # print(df)
+    # print(df['Username'])
+
+    row = df.loc[df['Username'] == gift_reciever]
+    message = "you have received as you secret satan " + str(row['Nickname'].values[0]) + '\n'
+    message += "They like " + str(row['Likes'].values[0]) + '\n'
+    message += "They fucking hate " + str(row['Hates'].values[0]) + ", so don't send them that."
+    
+  
+    return message
+
 if __name__ == "__main__":
-    test_list = ['Joe', 'Quincy', 'Seth', 'Jordan', 'Kyle', 'Paul']
-    results = secret_santa(test_list)
-    save_results(results)
+    # test_list = ['Joe', 'Quincy', 'Seth', 'Jordan', 'Kyle', 'Paul']
+    # results = secret_santa(test_list)
+    # save_results(results)
+
+    df = load_excel_pandas()
+    create_gift_receiver_message('Aufy', df)
