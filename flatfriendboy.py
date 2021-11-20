@@ -5,6 +5,7 @@ import aiocron
 import random
 import re
 import secret_santa 
+import time
 
 # will not play unless it is friday
 # instead rickrolls
@@ -73,15 +74,19 @@ async def on_message(message):
             secret_santa.save_results(results)
 
             # for user_obj in mention_object_list:
-            df =secret_santa.load_excel_pandas()
+            df = secret_santa.load_excel_pandas()
+            print(df)
             for user_obj in mention_object_list:
                 gift_giver = user_obj.name
                 for pair in results:
                     if pair[0] == gift_giver:
+
+
                         gift_receiver = pair[1]
                         message = secret_santa.create_gift_receiver_message(gift_receiver, df)
+                        time.sleep(1)
                         await user_obj.send(message)
-
+    
                     # print(gift_giver)
                     # print(gift_receiver)
                     # print(message)
