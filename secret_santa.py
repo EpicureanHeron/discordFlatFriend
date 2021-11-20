@@ -44,19 +44,14 @@ def load_excel_pandas():
     return df
 
 def create_gift_receiver_message(gift_reciever, df):
-    data = {'email': '',
-    'discord_nick_name': '',
-    'discord_user_name': '',
-    'address': '',
-    'likes': '',
-    'dislikes': ''}
+
     # print(df)
     # print(df['Username'])
 
     row = df.loc[df['Username'] == gift_reciever]
-    message = "you have received as you secret satan " + str(row['Nickname'].values[0]) + " AKA " + str(row['Username'].values[0]) + '\n'
-    message += "They like " + str(row['Likes'].values[0]) + '\n'
-    message += "They fucking hate " + str(row['Hates'].values[0]) + ", so don't send them that." + '\n'
+    message = "Hail! You have received as you secret satan: " + str(row['Nickname'].values[0]) + " AKA " + str(row['Username'].values[0]) + '\n'
+    message += 'They supposedly like, "' + str(row['Likes'].values[0]) + '."' + '\n'
+    message += 'They fucking hate, "'+ str(row['Hates'].values[0]) + '", so, not that.' + '\n'
     message += "If you are sending something physically, their address is: " +  str(row['Address'].values[0]) + '\n'
     message += "Digital stuff could probably be emailed to " +  str(row['Email'].values[0]) + '\n'
     message += "HAIL SATAN (tis the season)"
