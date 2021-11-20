@@ -40,7 +40,7 @@ def save_results(list_of_tuples):
 
 def load_excel_pandas():
     df = pd.read_excel("./data/secret_santa.xlsx")
-   
+    print(df)
     return df
 
 def create_gift_receiver_message(gift_reciever, df):
@@ -55,7 +55,7 @@ def create_gift_receiver_message(gift_reciever, df):
     message += "If you are sending something physically, their address is: " +  str(row['Address'].values[0]) + '\n'
     message += "Digital stuff could probably be emailed to " +  str(row['Email'].values[0]) + '\n'
     message += "HAIL SATAN (tis the season)"
-  
+    print(message)
     return message
 
 if __name__ == "__main__":
