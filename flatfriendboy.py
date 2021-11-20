@@ -4,6 +4,7 @@ import datetime
 import aiocron
 import random
 import re
+import secret_santa 
 
 # will not play unless it is friday
 # instead rickrolls
@@ -13,6 +14,8 @@ CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
+
+
 
 @client.event
 async def on_message(message):
@@ -51,6 +54,52 @@ async def on_message(message):
             await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
+
+    if message.content.startswith('hail satan'):
+        #1 load excel data in /data folder with pandas? 
+        #2 randomly match users (gift_giver, gift_receiver)
+           # A) this may be tricky...be deliberate and may make this a function
+        #3 
+        authorObj = message.author
+        if authorObj.name == 'EpicureanHeron':
+            mention_object_list = message.mentions
+            user_list = []
+
+            for user_obj in mention_object_list :
+                user_list.append(user_obj.name)
+            print(user_list)
+
+            results = secret_santa.secret_santa(user_list)
+            secret_santa.save_results(results)
+
+            # for user_obj in mention_object_list:
+            df =secret_santa.load_excel_pandas()
+            for user_obj in mention_object_list:
+                gift_giver = user_obj.name
+                for pair in results:
+                    if pair[0] == gift_giver:
+                        gift_receiver = pair[1]
+                        message = secret_santa.create_gift_receiver_message(gift_receiver, df)
+                        await user_obj.send(message)
+
+                    # print(gift_giver)
+                    # print(gift_receiver)
+                    # print(message)
+
+                    # if gift_giver == 'EpicureanHeron':
+                    #     await user_obj.send(message)
+
+
+              #  user_obj will be the gift_giver, so, look up from the results list who is associated with with them probably using a name match in the list 
+              # look up info from pandas based on name of gift_receiver
+              # format string (do not use the f string formatting) with relevant information
+              # message the gift_give with the details (this will be important )
+              
+        else:
+           await authorObj.send('https://tenor.com/view/lotr-lord-of-the-rings-theoden-king-of-rohan-you-have-no-power-here-gif-4952489')
+
+        #     await user.send('test')
+
 
 @aiocron.crontab('0 4 * * FRI')
 # @aiocron.crontab('* * * * *')
