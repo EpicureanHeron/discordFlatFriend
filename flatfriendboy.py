@@ -55,19 +55,26 @@ async def on_message(message):
             await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
-
-    if message.author.name == 'MEE6':
-        responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
-         'you suck', 
-         'no one likes you',
-          'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif'
-          'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif']
-        authorObj = message.author
-        print('test')
-      
-        insult = authorObj.mention + ' ' +  random.choice(responses)
-        print(insult)
-        await message.channel.send(insult)
+    # innkeeper bullying
+    if message.author.name == 'MEE6' :
+        value = random.randrange(1, 100)
+        if value%2==0:
+            responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
+            'you suck', 
+            'no one likes you',
+            'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif', 
+            'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif',
+            'is a coward',
+            'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            'is actually super cool....NOT',
+            'is level one bajillion of being a shit.',
+            "NOT COOL.",
+            'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            'https://media.giphy.com/media/qabSGxXF589Us/giphy.gif']
+            authorObj = message.author
+        
+            insult = authorObj.mention + ' ' +  random.choice(responses)
+            await message.channel.send(insult)
 
     if message.content.startswith('hail satan'):
         #1 load excel data in /data folder with pandas? 
