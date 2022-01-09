@@ -56,6 +56,19 @@ async def on_message(message):
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
 
+    if message.author.name == 'MEE6':
+        responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
+         'you suck', 
+         'no one likes you',
+          'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif'
+          'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif']
+        authorObj = message.author
+        print('test')
+      
+        insult = authorObj.mention + ' ' +  random.choice(responses)
+        print(insult)
+        await message.channel.send(insult)
+
     if message.content.startswith('hail satan'):
         #1 load excel data in /data folder with pandas? 
         #2 randomly match users (gift_giver, gift_receiver)
