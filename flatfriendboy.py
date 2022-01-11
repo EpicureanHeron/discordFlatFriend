@@ -85,7 +85,7 @@ async def on_message(message):
 
             authorObj = message.author
             mentioned_user = message.mentions
-            response_message =mentioned_user + ' ' + authorObj.mention + ' ' +  random.choice(responses)
+            response_message =mentioned_user[0] + ' ' + authorObj.mention + ' ' +  random.choice(responses)
             await message.channel.send( response_message)
 
     if message.content.startswith('hail satan'):
