@@ -58,23 +58,35 @@ async def on_message(message):
     # innkeeper bullying
     if message.author.name == 'MEE6' :
         value = random.randrange(1, 100)
-        if value == 1110:
-            responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
-            'you suck', 
-            'no one likes you',
-            'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif', 
-            'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif',
-            'is a coward',
-            'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
-            'is actually super cool....NOT',
-            'is level one bajillion of being a shit.',
-            "NOT COOL.",
-            'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
-            'https://media.giphy.com/media/qabSGxXF589Us/giphy.gif']
+        if value < 20:
+            # responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
+            # 'you suck', 
+            # 'no one likes you',
+            # 'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif', 
+            # 'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif',
+            # 'is a coward',
+            # 'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            # 'is actually super cool....NOT',
+            # 'is level one bajillion of being a shit.',
+            # "NOT COOL.",
+            # 'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            # 'https://media.giphy.com/media/qabSGxXF589Us/giphy.gif']
+            responses = ['https://tenor.com/view/goku-dragon-ball-level-up-anime-gif-gif-22760068',
+            'WAY TO GO!',
+            'both are very handsome too!',
+            'https://tenor.com/view/level-up-next-level-another-level-energy-letterkenny-gif-19755373',
+            'Love you both!',
+            'You are all amazing',
+            'https://tenor.com/view/ethplode-mario-super-mario-upgrade-level-up-gif-14696778',
+            'SYNERGY!!!',
+            'https://www.youtube.com/watch?v=TW0CFTsZgZM'
+
+            ]
+
             authorObj = message.author
-        
-            insult = authorObj.mention + ' ' +  random.choice(responses)
-            await message.channel.send(insult)
+            mentioned_user = message.mentions
+            response_message =mentioned_user + ' ' + authorObj.mention + ' ' +  random.choice(responses)
+            await message.channel.send( response_message)
 
     if message.content.startswith('hail satan'):
         #1 load excel data in /data folder with pandas? 
