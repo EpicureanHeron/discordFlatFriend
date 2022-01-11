@@ -58,7 +58,7 @@ async def on_message(message):
     # innkeeper bullying
     if message.author.name == 'MEE6' :
         value = random.randrange(1, 100)
-        if value%2==0:
+        if value = 1110:
             responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
             'you suck', 
             'no one likes you',
