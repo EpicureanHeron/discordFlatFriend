@@ -57,7 +57,7 @@ async def on_message(message):
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
     # innkeeper bullying
     if message.author.name == 'MEE6' :
-        print(mentioned_users)
+        
         value = random.randrange(1, 100)
         if value < 20:
             # responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
