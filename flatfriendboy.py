@@ -56,10 +56,11 @@ async def on_message(message):
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
     # innkeeper bullying
-    if message.author.name == 'MEE6' :
+    if message.author.name == 'EpicureanHeron' :
         
         value = random.randrange(1, 100)
-        if value < 20:
+        print(value)
+        if value != 20:
             # responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
             # 'you suck', 
             # 'no one likes you',
@@ -87,7 +88,7 @@ async def on_message(message):
             authorObj = message.author
             mentioned_users = message.mentions
             print(mentioned_users)
-            response_message =mentioned_users[0] + ' ' + authorObj.mention + ' ' +  random.choice(responses)
+            response_message =mentioned_users[0].mention + ' ' + authorObj.mention + ' ' +  random.choice(responses)
             await message.channel.send( response_message)
 
     if message.content.startswith('hail satan'):
