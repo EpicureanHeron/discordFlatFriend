@@ -6,6 +6,7 @@ import random
 import re
 import secret_santa 
 import time
+import sqlalchemy 
 
 # will not play unless it is friday
 # instead rickrolls
@@ -15,7 +16,7 @@ CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
-
+engine = create_engine("sqlite:///wsl$/Ubuntu-20.04/home/jft}")
 
 
 @client.event
