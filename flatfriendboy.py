@@ -7,6 +7,8 @@ import re
 import secret_santa 
 import time
 
+import dbinteractions
+
 # will not play unless it is friday
 # instead rickrolls
 # auto posts flat friend friday
@@ -15,7 +17,6 @@ CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
-
 
 
 @client.event
@@ -40,6 +41,7 @@ async def on_message(message):
 
     match = whatdays.search(message.content)
     if message.content.startswith('.cornjob'):
+        dbinteractions.add_interaction(message.author.name, 'cornjob')
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
 
 
@@ -48,13 +50,50 @@ async def on_message(message):
         value = random.randrange(1, 100)
         print("the value for good bot is: " + str(value))
         authorObj = message.author
-       
+        print(message.author)
+        dbinteractions.add_interaction(message.author.name, 'good bot')
+        dbinteractions.analysis()
         if value%2==0:
             await authorObj.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
         elif value == 69:
             await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
         else:
             await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
+    # innkeeper bullying
+    if message.author.name == 'MEE6' :
+        
+        value = random.randrange(1, 100)
+ 
+        if value < 33:
+            # responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
+            # 'you suck', 
+            # 'no one likes you',
+            # 'https://media.giphy.com/media/09bVX2WzBhZK8KwhqP/giphy.gif', 
+            # 'fuck off https://media.giphy.com/media/3o84sw9CmwYpAnRRni/giphy.gif',
+            # 'is a coward',
+            # 'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            # 'is actually super cool....NOT',
+            # 'is level one bajillion of being a shit.',
+            # "NOT COOL.",
+            # 'https://media.giphy.com/media/l0HlCFaI35yAIB63m/giphy.gif',
+            # 'https://media.giphy.com/media/qabSGxXF589Us/giphy.gif']
+            responses = ['https://tenor.com/view/goku-dragon-ball-level-up-anime-gif-gif-22760068',
+            'WAY TO GO!',
+            'both are very handsome too!',
+            'https://tenor.com/view/level-up-next-level-another-level-energy-letterkenny-gif-19755373',
+            'Love you both!',
+            'You are all amazing',
+            'https://tenor.com/view/ethplode-mario-super-mario-upgrade-level-up-gif-14696778',
+            'SYNERGY!!!',
+            'https://www.youtube.com/watch?v=TW0CFTsZgZM'
+
+            ]
+
+            authorObj = message.author
+            mentioned_users = message.mentions
+         
+            response_message =mentioned_users[0].mention + ' ' + authorObj.mention + ' ' +  random.choice(responses)
+            await message.channel.send( response_message)
 
     if message.content.startswith('hail satan'):
         #1 load excel data in /data folder with pandas? 
