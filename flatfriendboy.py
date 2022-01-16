@@ -6,7 +6,8 @@ import random
 import re
 import secret_santa 
 import time
-import sqlalchemy 
+
+import dbinteractions
 
 # will not play unless it is friday
 # instead rickrolls
@@ -16,7 +17,6 @@ CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
 client = commands.Bot(command_prefix = '.')
-engine = create_engine("sqlite:///wsl$/Ubuntu-20.04/home/jft}")
 
 
 @client.event
@@ -41,6 +41,7 @@ async def on_message(message):
 
     match = whatdays.search(message.content)
     if message.content.startswith('.cornjob'):
+        dbinteractions.add_interaction(message.author.name, 'cornjob')
         await message.channel.send('https://www.youtube.com/watch?v=ISiGiYfahS0')
 
 
@@ -49,7 +50,9 @@ async def on_message(message):
         value = random.randrange(1, 100)
         print("the value for good bot is: " + str(value))
         authorObj = message.author
-       
+        print(message.author)
+        dbinteractions.add_interaction(message.author.name, 'good bot')
+        dbinteractions.analysis()
         if value%2==0:
             await authorObj.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
         elif value == 69:
@@ -60,7 +63,7 @@ async def on_message(message):
     if message.author.name == 'MEE6' :
         
         value = random.randrange(1, 100)
-        print(value)
+ 
         if value < 33:
             # responses = ['https://giphy.com/gifs/battlebots-9go-9battlebots-3o6ZtiPuSWhgZVenM4',
             # 'you suck', 
@@ -88,7 +91,7 @@ async def on_message(message):
 
             authorObj = message.author
             mentioned_users = message.mentions
-            print(mentioned_users)
+         
             response_message =mentioned_users[0].mention + ' ' + authorObj.mention + ' ' +  random.choice(responses)
             await message.channel.send( response_message)
 
