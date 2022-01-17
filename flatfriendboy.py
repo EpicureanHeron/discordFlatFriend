@@ -25,6 +25,7 @@ async def on_message(message):
     # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
     flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
     match = whatdays.search(message.content)
+     
      # saying his name 
     match_flatfriend = flatfriend.search(message.content)
     ff_at_mentioned = False
@@ -36,8 +37,10 @@ async def on_message(message):
 
     if match_flatfriend or ff_at_mentioned:
         dbinteractions.add_interaction(message.author.name, 'saying his name')
-        
-
+    # sends dataframe
+    if message.content == '!shib':
+        df = dbinteractions.analysis()
+        await message.channel.send(df)
         # message.channel.send
     # if message.author.bot == False:
     #     print('https://www.youtube.com/watch?v=ISiGiYfahS0')

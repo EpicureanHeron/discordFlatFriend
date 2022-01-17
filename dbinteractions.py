@@ -48,7 +48,7 @@ def analysis():
                   columns=['id', 'username', 'interaction_type', 'date'])
 
     print(df)
-    
+    return df
 
 
 
