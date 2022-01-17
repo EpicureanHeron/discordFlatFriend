@@ -23,20 +23,20 @@ client = commands.Bot(command_prefix = '.')
 async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
     # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
-    flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
+    # flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
     match = whatdays.search(message.content)
      
      # saying his name 
-    match_flatfriend = flatfriend.search(message.content)
-    ff_at_mentioned = False
-    mentioned_users = message.mentions
+    # match_flatfriend = flatfriend.search(message.content)
+    # ff_at_mentioned = False
+    # mentioned_users = message.mentions
    
-    for user in mentioned_users:
-        if user.name == 'FlatFriendBot':
-            ff_at_mentioned = True
+    # for user in mentioned_users:
+    #     if user.name == 'FlatFriendBot':
+    #         ff_at_mentioned = True
 
-    if match_flatfriend or ff_at_mentioned:
-        dbinteractions.add_interaction(message.author.name, 'saying his name')
+    # if match_flatfriend or ff_at_mentioned:
+    #     dbinteractions.add_interaction(message.author.name, 'saying his name')
     # sends dataframe
     if message.content == '!shib':
         df = dbinteractions.analysis()
