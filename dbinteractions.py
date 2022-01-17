@@ -32,7 +32,7 @@ def database_connect():
 
 
 def add_interaction(username, interaction_type):
-
+    print(username, interaction_type)
 
     session, conn, besties = database_connect()
     new_bestie = Bestfriend(username=username, interaction_type=interaction_type, date= datetime.datetime.now())
@@ -48,7 +48,7 @@ def analysis():
                   columns=['id', 'username', 'interaction_type', 'date'])
 
     print(df)
-    
+    return df
 
 
 

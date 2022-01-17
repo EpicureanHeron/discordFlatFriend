@@ -22,12 +22,30 @@ client = commands.Bot(command_prefix = '.')
 @client.event
 async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
-   
+    # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
+    flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
     match = whatdays.search(message.content)
+     
+     # saying his name 
+    match_flatfriend = flatfriend.search(message.content)
+    ff_at_mentioned = False
+    mentioned_users = message.mentions
+   
+    for user in mentioned_users:
+        if user.name == 'FlatFriendBot':
+            ff_at_mentioned = True
+
+    if match_flatfriend or ff_at_mentioned:
+        dbinteractions.add_interaction(message.author.name, 'saying his name')
+    # sends dataframe
+    if message.content == '!shib':
+        df = dbinteractions.analysis()
+        await message.channel.send(df)
         # message.channel.send
     # if message.author.bot == False:
     #     print('https://www.youtube.com/watch?v=ISiGiYfahS0')
     if match:
+        dbinteractions.add_interaction(message.author.name, 'what day')
         today = datetime.datetime.today().weekday()
         if today ==4:
             # flat friend protest over, uncomment below
@@ -50,9 +68,9 @@ async def on_message(message):
         value = random.randrange(1, 100)
         print("the value for good bot is: " + str(value))
         authorObj = message.author
-        print(message.author)
+       
         dbinteractions.add_interaction(message.author.name, 'good bot')
-        dbinteractions.analysis()
+        # dbinteractions.analysis()
         if value%2==0:
             await authorObj.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
         elif value == 69:

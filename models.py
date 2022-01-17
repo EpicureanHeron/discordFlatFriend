@@ -3,11 +3,14 @@ from sqlalchemy import Column, Integer, String, DateTime, Table
 from sqlalchemy import create_engine
 
 from sqlalchemy.ext.declarative import declarative_base
-
+import json
 
 Base = declarative_base()
-engine = create_engine('sqlite:///C:\\sqlite3\\flatfriend.db')
-
+f = open('database.json')
+# returns JSON object as
+# a dictionary
+data = json.load(f)
+engine = create_engine(data['database'])
 
 class Bestfriend(Base): 
 
