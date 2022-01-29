@@ -12,7 +12,7 @@ import dbinteractions
 # will not play unless it is friday
 # instead rickrolls
 # auto posts flat friend friday
- 
+print("I am awake")
 CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
@@ -22,21 +22,29 @@ client = commands.Bot(command_prefix = '.')
 @client.event
 async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
-    # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
-    # flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
     match = whatdays.search(message.content)
-     
+    # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
+    flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
+    
+    
      # saying his name 
-    # match_flatfriend = flatfriend.search(message.content)
-    # ff_at_mentioned = False
-    # mentioned_users = message.mentions
-   
-    # for user in mentioned_users:
-    #     if user.name == 'FlatFriendBot':
-    #         ff_at_mentioned = True
+    match_flatfriend = flatfriend.search(message.content)
+    ff_at_mentioned = False
+    mentioned_users = message.mentions
 
-    # if match_flatfriend or ff_at_mentioned:
-    #     dbinteractions.add_interaction(message.author.name, 'saying his name')
+    for user in mentioned_users:
+        if user.name == 'FlatFriendBot':
+            ff_at_mentioned = True
+
+    if match_flatfriend or ff_at_mentioned:
+        # print(message.author.name)
+        # print(message)
+        dbinteractions.add_interaction(message.author.name, 'saying his name')
+    
+    if message.content == '!beerme':
+        # print('beer me')
+        # print(message.author.name)
+        dbinteractions.add_interaction(message.author.name, 'beer me')
     # sends dataframe
     if message.content == '!shib':
         df = dbinteractions.analysis()
@@ -71,14 +79,24 @@ async def on_message(message):
        
         dbinteractions.add_interaction(message.author.name, 'good bot')
         # dbinteractions.analysis()
+        direct_message = "I've seen your Google history," + authorObj.mention + ", you better call me a good bot" 
+        good_responses = [
+            '011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"', 
+            direct_message,
+            'https://tenor.com/view/dance-futurama-robot-happy-gif-5958538',
+            'https://tenor.com/view/robot-no-nope-not-noo-gif-18171565',
+            'https://www.youtube.com/watch?v=g4Gh_IcK8UM'
+
+        ]
+
         if value%2==0:
-            await authorObj.send('011101000110100001100001011011100110101100100000011110010110111101110101, which is my way of saything "thank you"')
+            await authorObj.send( random.choice(good_responses))
         elif value == 69:
-            await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE.')
+            await message.channel.send(authorObj.mention + ' ROLLED A 69!!! NICEEEEEEE. https://tenor.com/view/wine-me-dine-me-69me-treat-me-take-me-out-first-gif-16815132')
         else:
-            await message.channel.send("I've seen your Google history," + authorObj.mention + ", you better call me a good bot" )
+            await message.channel.send(random.choice(good_responses))
     # innkeeper bullying
-    if message.author.name == 'MEE6' :
+    if message.author.name == 'Innkeeper' :
         
         value = random.randrange(1, 100)
  
@@ -169,7 +187,7 @@ async def cronjob1():
     CHANNEL_ID = open("channel.txt","r").readline()
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
-    print('success')
+  
     # after protest
     await channel.send('https://www.youtube.com/watch?v=A5U8ypHq3BU')
     # await channel.send('https://twitter.com/gatorsafterdark/status/1423646602691072000?s=20')
@@ -177,16 +195,31 @@ async def cronjob1():
 async def cronjob2():
     CHANNEL_ID = open("channel.txt","r").readline()
     # CHANNEL_ID = open("channel_test.txt","r").readline()
+    weekend_response = [
+        'https://twitter.com/CraigWeekend/status/1393340094602366976?s=20', 
+        'https://tenor.com/view/nicolas-cage-friday-feel-that-friday-feeling-feel-that-thats-friday-gif-12235300',
+        'https://www.youtube.com/watch?v=4iK5e76auJA',
+        'https://www.youtube.com/watch?v=eaqdYN5-UPw',
+        'https://www.youtube.com/watch?v=dsgBpsNPQ50'
+        ]
+
     channel = client.get_channel(int(CHANNEL_ID))
-    await channel.send('https://twitter.com/CraigWeekend/status/1393340094602366976?s=20')
+    await channel.send(random.choice(weekend_response))
 
 @aiocron.crontab('00 8 * * MON')
 async def cronjob3():
     CHANNEL_ID = open("channel.txt","r").readline()
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
-
-    await channel.send('https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039')
+    monday_response = [
+        'https://tenor.com/view/mondays-office-space-gif-5711568',
+        'https://tenor.com/view/impastor-kicked-nuts-kickedinthe-kickedinthenuts-gif-19303039',
+        'https://www.youtube.com/watch?v=SsmVgoXDq2w',
+        'https://www.youtube.com/watch?v=EWd4OSBX8nQ',
+        'https://tenor.com/view/kick-balls-gif-8599786',
+        'https://www.youtube.com/watch?v=i4lOXUjW1zs'
+    ]
+    await channel.send(random.choice(monday_response))
 
 
 @aiocron.crontab('20 16 * * *')
@@ -195,10 +228,17 @@ async def cronjob4():
     # CHANNEL_ID = open("channel_test.txt","r").readline()
     channel = client.get_channel(int(CHANNEL_ID))
     value = random.randrange(1, 100)
+    responses_blaze = [
+        'https://tenor.com/view/drugs-dope-high-trippy-gif-4808633',
+        'https://c.tenor.com/5po7rz9n1sUAAAAC/joint-cheech-and-chong.gif',
+        'https://tenor.com/view/h3dz-guitar-riff-solo-heavy-gif-15991752',
+        'https://tenor.com/view/cmadeit-gif-18991072',
+        'https://tenor.com/view/got-weed-blunt-hi-high-movies-gif-14695106'
+    ]
     print(value)
     if value%4 == 0:
-        print('posting!')
+        print('blaze it!')
       
-        await channel.send('https://tenor.com/view/drugs-dope-high-trippy-gif-4808633')
+        await channel.send(random.choice(responses_blaze))
 
 client.run(TOKEN)
