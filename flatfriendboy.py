@@ -24,7 +24,8 @@ async def on_message(message):
     whatdays = re.compile(r'(^what*([\w ]+)day$)', re.I)
     match = whatdays.search(message.content)
     # https://regex101.com/r/NGl24U/1 regex for flatfriend bot matching
-    flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
+    flatfriend = re.compile(r'(?=[A-Z]|[a-z])(flatfriend|(flat)\s(friend))', re.I)
+    # flatfriend = re.compile(r'(?=[A-Z]|[a-z])(?i:flatfriend|(flat)\s(friend))')
     
     
      # saying his name 
