@@ -3,3 +3,4 @@ channel.txt
 channel_test.txt
 *.txt
 /data
+database.json
