@@ -6,7 +6,7 @@ import random
 import re
 import secret_santa 
 import time
-
+import gatorme
 import dbinteractions
 
 # will not play unless it is friday
@@ -41,7 +41,12 @@ async def on_message(message):
         # print(message.author.name)
         # print(message)
         dbinteractions.add_interaction(message.author.name, 'saying his name')
-    
+
+    if message.content.startswith('!gatorme'):
+        random_gator_gif = gatorme.gatorme()
+        dbinteractions.add_interaction(message.author.name, 'gator me')
+        await message.channel.send(random_gator_gif)
+
     if message.content == '!beerme':
         # print('beer me')
         # print(message.author.name)
