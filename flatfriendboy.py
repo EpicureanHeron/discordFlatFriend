@@ -8,6 +8,8 @@ import secret_santa
 import time
 import gatorme
 import dbinteractions
+from discord.utils import get
+
 
 # will not play unless it is friday
 # instead rickrolls
@@ -46,6 +48,16 @@ async def on_message(message):
         random_gator_gif = gatorme.gatorme()
         dbinteractions.add_interaction(message.author.name, 'gator me')
         await message.channel.send(random_gator_gif)
+
+    if message.content.startswith('!puppet'):
+        
+        CHANNEL_ID = open("channel.txt","r").readline()
+        # CHANNEL_ID = open("channel_test.txt","r").readline()
+       
+
+        channel = client.get_channel(int(CHANNEL_ID))
+        await channel.send(message.content[8:])
+     
 
     if message.content == '!beerme':
         # print('beer me')
@@ -247,4 +259,30 @@ async def cronjob4():
       
         await channel.send(random.choice(responses_blaze))
 
+@aiocron.crontab('20 04 22 5 *')
+# K.H. bday 5/22 
+async def cronjob5():
+    CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
+    channel = client.get_channel(int(CHANNEL_ID))
+    await channel.send('HAPPY BIRTHDAY MR. HOLDER! https://tenor.com/view/happy-birthday-smile-birthday-bday-emoji-gif-20531948')
+
+@aiocron.crontab('20 04 25 9 *')
+# QV bday 09/25 
+async def cronjob6():
+    CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
+    channel = client.get_channel(int(CHANNEL_ID))
+    await channel.send('HAPPY BIRTHDAY MR. VORIS!  https://tenor.com/view/happybirthday-birthday-bday-hbd-birthdaywishes-gif-20532140')
+
+@aiocron.crontab('20 04 1 4 *')
+# TW bday 09/25 
+async def cronjob7():
+    CHANNEL_ID = open("channel.txt","r").readline()
+    # CHANNEL_ID = open("channel_test.txt","r").readline()
+    channel = client.get_channel(int(CHANNEL_ID))
+    await channel.send('HAPPY BIRTHDAY MR. WOGGON! https://www.youtube.com/watch?v=Ru2tsT32pHA&list=PLemLulPSDQ8uec7IBuwIQKswQKDZtEsp1')
+
+
+    
 client.run(TOKEN)
