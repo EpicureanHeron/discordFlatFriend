@@ -64,5 +64,5 @@ if __name__ == "__main__":
     # save_results(results)
 
     df = load_excel_pandas()
-    message = create_gift_receiver_message('Aufy', df)
+    message = create_gift_receiver_message('EpicureanHeron', df)
     print(message)

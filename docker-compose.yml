@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    command: bash -c "python flatfriendboy.py"
+    stdin_open: true
+    tty: true

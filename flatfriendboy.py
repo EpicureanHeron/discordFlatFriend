@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import datetime
 import aiocron
+import asyncio
 import random
 import re
 import secret_santa 
@@ -18,7 +19,10 @@ print("I am awake")
 CHANNEL_ID = open("channel.txt","r").readline()
  
 TOKEN = open("token.txt","r").readline()
-client = commands.Bot(command_prefix = '.')
+
+intents = discord.Intents.all()
+intents.members = True
+client = commands.Bot(command_prefix = '.', intents=intents)
 
 
 @client.event
@@ -283,6 +287,8 @@ async def cronjob7():
     channel = client.get_channel(int(CHANNEL_ID))
     await channel.send('HAPPY BIRTHDAY MR. WOGGON! https://www.youtube.com/watch?v=Ru2tsT32pHA&list=PLemLulPSDQ8uec7IBuwIQKswQKDZtEsp1')
 
-
-    
 client.run(TOKEN)
+#attime.start()
+asyncio.get_event_loop().run_forever()
+    
+#client.run(TOKEN)
