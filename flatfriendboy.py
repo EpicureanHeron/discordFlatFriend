@@ -53,6 +53,11 @@ async def on_message(message):
         dbinteractions.add_interaction(message.author.name, 'gator me')
         await message.channel.send(random_gator_gif)
 
+    if message.content.startswith('!crocme'):
+        random_croc_gif = gatorme.crocme()
+        dbinteractions.add_interaction(message.author.name, 'croc me')
+        await message.channel.send(random_croc_gif)
+
     if message.content.startswith('!puppet'):
         
         CHANNEL_ID = open("channel.txt","r").readline()
