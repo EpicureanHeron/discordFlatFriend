@@ -52,6 +52,17 @@ async def on_message(message):
         random_gator_gif = gatorme.gatorme()
         dbinteractions.add_interaction(message.author.name, 'gator me')
         await message.channel.send(random_gator_gif)
+     
+    if message.content.startswith('!goon'):
+        random_goon_gif = gatorme.goon()
+        dbinteractions.add_interaction(message.author.name, 'gator me')
+        await message.channel.send(random_goon_gif)
+
+    if message.content.startswith('!YAKUZA'):
+        random_yakuza_gif = gatorme.yakuza()
+        dbinteractions.add_interaction(message.author.name, 'gator me')
+        await message.channel.send(random_yakuza_gif)
+
 
     if message.content.startswith('!crocme'):
         random_croc_gif = gatorme.crocme()
