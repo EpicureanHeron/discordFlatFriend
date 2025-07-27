@@ -58,6 +58,11 @@ async def on_message(message):
         dbinteractions.add_interaction(message.author.name, 'goon')
         await message.channel.send(random_goon_gif)
 
+    if message.content.startswith('!loon'):
+        random_loon_gif = gatorme.loon()
+        dbinteractions.add_interaction(message.author.name, 'loon')
+        await message.channel.send(random_loon_gif)
+
     if message.content.startswith('!YAKUZA'):
         random_yakuza_gif = gatorme.yakuza()
         dbinteractions.add_interaction(message.author.name, 'YAKUZA')
