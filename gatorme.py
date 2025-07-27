@@ -18,6 +18,22 @@ def gatorme():
 
     return random_url_gif
 
+def loon():
+    f = open('database.json')
+    # returns JSON object as
+    # a dictionary
+    file_content = json.load(f)
+    baseURL = 'https://api.giphy.com/v1/gifs/random?'
+    apiKey = "api_key=" +  file_content['gif_api_key']
+    tag = '&tag='
+    subj = 'loon'
+    requestURL = baseURL + apiKey + tag + subj
+    responses = requests.get(requestURL).json()
+    # pprint.pprint(responses)
+    random_url_gif =   responses['data']['images']['downsized_large']['url']
+
+    return random_url_gif
+
 def goon():
     f = open('database.json')
     # returns JSON object as
