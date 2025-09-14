@@ -74,11 +74,10 @@ async def on_message(message):
         dbinteractions.add_interaction(message.author.name, 'croc me')
         await message.channel.send(random_croc_gif)
 
- 
-   # if message.content.startswith('skol'):
-    #    random_rodgers_gif = gatorme.skol()
-     #   dbinteractions.add_interaction(message.author.name, 'skol')
-      #  await message.channel.send(random_rodgers_gif)
+    if message.content.startswith('skol') or message.content.startswith('SKOL') or  message.content.startswith('SKOL!'):
+       random_rodgers_gif = gatorme.skol()
+       dbinteractions.add_interaction(message.author.name, 'skol')
+       await message.channel.send(random_rodgers_gif)
 
     if message.content.startswith('!puppet'):
         
